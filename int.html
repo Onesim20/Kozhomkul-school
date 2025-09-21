@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем учителя!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .presentation-container {
+            width: 95%;
+            max-width: 900px;
+            height: 90vh;
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 
+                0 35px 70px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: 
+                linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0.95) 0%, 
+                    rgba(255, 255, 255, 0.9) 50%, 
+                    rgba(255, 255, 255, 0.95) 100%);
+            backdrop-filter: blur(25px);
+            position: relative;
+            padding: 40px;
+            overflow-y: auto;
+            border-radius: 30px;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 105, 180, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(100, 149, 237, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Страница 1 - Титульная */
+        .title-slide {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(243, 156, 18, 0.1));
+            text-align: center;
+        }
+
+        .autumn-scene {
+            width: 380px;
+            height: 240px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #ff9ff3, #54a0ff);
+            border-radius: 30px;
+            margin: 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(255, 107, 107, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .autumn-scene::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg, 
+                rgba(255,255,255,0.2), 
+                transparent, 
+                rgba(255,255,255,0.15), 
+                transparent,
+                rgba(255,255,255,0.25),
+                transparent
+            );
+            animation: rotate 10s linear infinite;
+        }
+
+        .school-building {
+            font-size: 90px;
+            color: white;
+            text-shadow: 
+                3px 3px 10px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.3);
+            z-index: 2;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .school-name {
+            font-size: 36px;
+            color: #2c3e50;
+            margin: 20px 0 10px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-title {
+            font-size: 56px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #ff9ff3, #54a0ff);
+            background-size: 300% 300%;
+            animation: gradientText 4s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 30px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 3px;
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .date {
+            font-size: 22px;
+            color: #7f8c8d;
+            margin: 15px 0;
+        }
+
+        .decorative-elements {
+            font-size: 40px;
+            margin-top: 20px;
+            letter-spacing: 10px;
+        }
+
+        /* Страница 2 - Поздравление */
+        .greeting-slide {
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 152, 219, 0.1));
+            text-align: center;
+        }
+
+        .teachers-illustration {
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+            border-radius: 35px;
+            margin: 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.25),
+                0 0 50px rgba(102, 126, 234, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .teachers-illustration::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 45deg, 
+                rgba(255,255,255,0.15), 
+                transparent, 
+                rgba(255,255,255,0.2), 
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .teacher-group {
+            font-size: 110px;
+            color: white;
+            z-index: 2;
+            text-shadow: 
+                3px 3px 10px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(255, 255, 255, 0.3);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+        }
+
+        .slide-title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin: 30px 0 20px;
+            font-weight: bold;
+        }
+
+        .greeting-message {
+            font-size: 22px;
+            line-height: 1.9;
+            color: #2c3e50;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            padding: 35px;
+            border-radius: 25px;
+            margin: 20px auto;
+            max-width: 650px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-left: 6px solid #3498db;
+            border-top: 2px solid rgba(52, 152, 219, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Страница 3 - Пожелания и подпись */
+        .wishes-slide {
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(241, 196, 15, 0.1));
+            text-align: center;
+        }
+
+        .wishes-illustration {
+            width: 390px;
+            height: 270px;
+            background: linear-gradient(135deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+            border-radius: 35px;
+            margin: 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.25),
+                0 0 50px rgba(240, 147, 251, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            overflow: hidden;
+        }
+
+        .gift-box {
+            font-size: 100px;
+            color: white;
+            z-index: 2;
+            animation: bounce 2.5s ease-in-out infinite;
+            text-shadow: 
+                3px 3px 10px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(255, 255, 255, 0.3);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .wishes-text {
+            font-size: 20px;
+            line-height: 1.9;
+            color: #2c3e50;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-left: 6px solid #e74c3c;
+            border-top: 2px solid rgba(231, 76, 60, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .signature-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+            padding: 35px;
+            border-radius: 25px;
+            margin-top: 30px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(231, 76, 60, 0.2);
+            backdrop-filter: blur(15px);
+        }
+
+        .signature-text {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .signature-names {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .signature-student {
+            font-size: 20px;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .signature-parliament {
+            font-size: 20px;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        /* Навигация */
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            padding: 20px 35px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 10px 30px rgba(102, 126, 234, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(102, 126, 234, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-indicator {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Декоративные элементы */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-leaf {
+            position: absolute;
+            font-size: 28px;
+            opacity: 0.7;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .leaf-1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .leaf-2 { top: 25%; right: 15%; animation-delay: 2s; }
+        .leaf-3 { bottom: 25%; left: 20%; animation-delay: 4s; }
+        .leaf-4 { bottom: 35%; right: 10%; animation-delay: 6s; }
+        .leaf-5 { top: 60%; left: 5%; animation-delay: 1s; }
+        .leaf-6 { top: 70%; right: 25%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(10deg); }
+            50% { transform: translateY(10px) rotate(-5deg); }
+            75% { transform: translateY(-5px) rotate(15deg); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .presentation-container {
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+            }
+            
+            .slide {
+                padding: 20px;
+            }
+            
+            .main-title {
+                font-size: 36px;
+            }
+            
+            .slide-title {
+                font-size: 28px;
+            }
+            
+            .autumn-scene,
+            .teachers-illustration,
+            .wishes-illustration {
+                width: 300px;
+                height: 200px;
+            }
+            
+            .school-building,
+            .teacher-group,
+            .gift-box {
+                font-size: 60px;
+            }
+            
+            .greeting-message,
+            .wishes-text {
+                font-size: 18px;
+                padding: 25px;
+            }
+            
+            .signature-names {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .signature-student,
+            .signature-parliament {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-indicator">
+            <span id="current-slide">1</span> / 3
+        </div>
+
+        <!-- Плавающие осенние листья -->
+        <div class="floating-elements">
+            <div class="floating-leaf leaf-1">🍂</div>
+            <div class="floating-leaf leaf-2">🍁</div>
+            <div class="floating-leaf leaf-3">🍂</div>
+            <div class="floating-leaf leaf-4">🍁</div>
+            <div class="floating-leaf leaf-5">🍂</div>
+            <div class="floating-leaf leaf-6">🍁</div>
+        </div>
+
+        <!-- Страница 1: Титульная -->
+        <div class="slide title-slide active">
+            <div class="autumn-scene">
+                <div class="school-building">🏫</div>
+            </div>
+            <h1 class="school-name">Школа имени Кожомкула</h1>
+            <h2 class="main-title">С Днем учителя!</h2>
+            <p class="date">3 октября 2025 года</p>
+            <div class="decorative-elements">🌟 📚 🍎 ✨</div>
+        </div>
+
+        <!-- Страница 2: Поздравление -->
+        <div class="slide greeting-slide">
+            <div class="teachers-illustration">
+                <div class="teacher-group">👨‍🏫👩‍🏫</div>
+            </div>
+            <h2 class="slide-title">Дорогие учителя!</h2>
+            <div class="greeting-message">
+                <p>В этот прекрасный осенний день мы от всего сердца поздравляем вас с Днем учителя!</p>
+                <br>
+                <p>Вы делаете невероятно важную и благородную работу — формируете будущее нашей страны, передавая не только знания, но и жизненную мудрость. Каждый урок с вами — это новое открытие, каждая встреча — шаг к новым горизонтам.</p>
+                <br>
+                <p>Ваше терпение, понимание и искренняя забота помогают нам становиться лучше. Спасибо за то, что верите в каждого из нас и вдохновляете на достижения! 🌟</p>
+            </div>
+        </div>
+
+        <!-- Страница 3: Пожелания и подпись -->
+        <div class="slide wishes-slide">
+            <div class="wishes-illustration">
+                <div class="gift-box">🎁</div>
+            </div>
+            <h2 class="slide-title">Наши пожелания</h2>
+            <div class="wishes-text">
+                <p><strong>Искренне желаем вам:</strong></p>
+                <br>
+                <p>🌈 Радости и счастья в каждом дне<br>
+                💪 Крепкого здоровья и неиссякаемых сил<br>
+                🏆 Новых профессиональных достижений<br>
+                👨‍👩‍👧‍👦 Тепла и уюта в семейном кругу<br>
+                🔥 Творческого вдохновения и интересных проектов<br>
+                🎓 Успешных и благодарных учеников<br>
+                ✨ Осуществления всех заветных мечт</p>
+            </div>
+            
+            <div class="signature-section">
+                <div class="signature-text">С любовью и глубоким уважением:</div>
+                <div class="signature-names">
+                    <div class="signature-student">от вашего ученика Абылкасымова Онесима</div>
+                    <div class="signature-parliament">и от имени всего Парламента</div>
+                </div>
+                <div style="font-size: 35px; margin-top: 25px; text-align: center; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));">💐 🌹 💝 🎊 ✨</div>
+            </div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Назад</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Далее →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 3;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide;
+            
+            // Обновляем кнопки навигации
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        // Управление с клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' && currentSlide > 1) changeSlide(-1);
+            if (e.key === 'ArrowRight' && currentSlide < totalSlides) changeSlide(1);
+        });
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(1);
+            
+            // Эффект мерцающих звезд при клике
+            document.addEventListener('click', function(e) {
+                const colors = ['⭐', '✨', '🌟', '💫'];
+                
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const star = document.createElement('div');
+                        star.textContent = colors[Math.floor(Math.random() * colors.length)];
+                        star.style.position = 'absolute';
+                        star.style.left = (e.clientX + Math.random() * 40 - 20) + 'px';
+                        star.style.top = (e.clientY + Math.random() * 40 - 20) + 'px';
+                        star.style.fontSize = '20px';
+                        star.style.pointerEvents = 'none';
+                        star.style.zIndex = '1000';
+                        star.style.animation = 'starFloat 2s ease-out forwards';
+                        
+                        document.body.appendChild(star);
+                        
+                        setTimeout(() => {
+                            if (star.parentNode) {
+                                star.parentNode.removeChild(star);
+                            }
+                        }, 2000);
+                    }, i * 150);
+                }
+            });
+        });
+
+        // Добавляем CSS для анимации звезд
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes starFloat {
+                0% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-80px) scale(0.3);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+
